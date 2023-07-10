@@ -38,16 +38,30 @@
 
 # No 3
 
+Mampu menunjukkan dan menjelaskan penerapan setiap poin dari SOLID Design Principle
+
 # No 4
+
+Mampu menunjukkan dan menjelaskan Design Pattern yang dipilih
 
 # No 5
 
+Mampu menunjukkan dan menjelaskan konektivitas ke database
+
 # No 6
+
+Mampu menunjukkan dan menjelaskan pembuatan web service dan setiap operasi CRUD nya
 
 # No 7
 
+Mampu menunjukkan dan menjelaskan Graphical User Interface dari produk digital
+
 # No 8
 
+Mampu menunjukkan dan menjelaskan HTTP connection melalui GUI produk digital
+
 # No 9
+
+Mampu Mendemonstrsikan produk digitalnya kepada publik dengan cara-cara kreatif melalui video Youtube
 
 # No 10

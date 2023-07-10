@@ -1,6 +1,6 @@
 package Content;
 
-import Helper.ImageProcessor;
+import Helper.*;
 import Database.Database;
 import Authentication.Login;
 import javax.swing.*;
