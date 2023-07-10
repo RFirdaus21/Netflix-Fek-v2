@@ -35,17 +35,22 @@
 | 28                                    | Direksi Dapat Melihat Statistik Waktu Tonton Suatu FIlm           | Medium | Belum Terimplementasi |
 
 # No 2
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/ClassDiagramv2.png)
 
 # No 3
-
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/SRP%20from%20Solid.png)
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/SRP%20from%20Solid%20(2).png)
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/SRP%20from%20Solid%20(3).png)
 Mampu menunjukkan dan menjelaskan penerapan setiap poin dari SOLID Design Principle
 
 # No 4
-
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/Singleton.png)
 Mampu menunjukkan dan menjelaskan Design Pattern yang dipilih
 
 # No 5
-
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/DB_connectCode.png)
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/DB_connect.png)
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/DB_connect1.png)
 Mampu menunjukkan dan menjelaskan konektivitas ke database
 
 # No 6
@@ -53,7 +58,7 @@ Mampu menunjukkan dan menjelaskan konektivitas ke database
 Mampu menunjukkan dan menjelaskan pembuatan web service dan setiap operasi CRUD nya
 
 # No 7
-
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/resources/GUI_GIF.gif)
 Mampu menunjukkan dan menjelaskan Graphical User Interface dari produk digital
 
 # No 8
@@ -64,4 +69,3 @@ Mampu menunjukkan dan menjelaskan HTTP connection melalui GUI produk digital
 
 Mampu Mendemonstrsikan produk digitalnya kepada publik dengan cara-cara kreatif melalui video Youtube
 
-# No 10
