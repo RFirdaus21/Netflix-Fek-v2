@@ -1,15 +1,15 @@
 package Content;
 
-import Helper.*;
-import Database.Database;
+import API.FilmApiHandler;
+import Helper.ImageProcessor;
 import Authentication.Login;
+import Model.FilmRequestResponse;
 import javax.swing.*;
 import java.awt.*;
 import javax.swing.border.LineBorder;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.util.List;
 
 
 public class ListMovie extends javax.swing.JFrame{
@@ -72,7 +72,7 @@ public class ListMovie extends javax.swing.JFrame{
         int imageWidth = 300;
         int imageHeight = 50;
         
-        ImageIcon logoImage = ImageProcessor.scaleImage(logo, imageName, imageWidth, imageHeight);
+        ImageIcon logoImage = ImageProcessor.getInstance().scaleImage(logo, imageName, imageWidth, imageHeight);
         logo.setIcon(logoImage);
         logoPanel.add(logo);
         
@@ -80,10 +80,9 @@ public class ListMovie extends javax.swing.JFrame{
     }
     
     private JScrollPane initMovie(){
-        try {
-            String query = "SELECT * FROM netflix_film";
-            ResultSet resultSetMovie = Database.getInstance().resultQuery(query);
-            
+            FilmApiHandler api = new FilmApiHandler();
+            List<FilmRequestResponse> films = api.getAll();
+
             JPanel panel = new JPanel(new GridBagLayout());
             panel.setBorder(new LineBorder(Color.BLACK));
             panel.setBackground(new java.awt.Color(0, 0, 0));
@@ -100,18 +99,18 @@ public class ListMovie extends javax.swing.JFrame{
             int imageHeight = 150;
             int indexIterationMovie = 0;
             String filmTitle;
-            String filmName;
+            String filmImageName;
             int filmYear;
-      
-            while (resultSetMovie.next()) {
+            
+            for (FilmRequestResponse film : films) {
                 JLabel movie = new JLabel();
                 movie.setPreferredSize(new java.awt.Dimension(120, 180));
                 
-                int filmId = resultSetMovie.getInt("id");
-                filmTitle = resultSetMovie.getString("title");
-                filmName = resultSetMovie.getString("image");
-                filmYear = resultSetMovie.getInt("year");
-
+                int filmId = film.getId();
+                filmTitle = film.getTitle();
+                filmImageName = film.getImage();
+                filmYear = film.getYear();
+                
                 movie.addMouseListener(new MouseAdapter() {
                     @Override
                     public void mouseClicked(MouseEvent e) {
@@ -123,7 +122,7 @@ public class ListMovie extends javax.swing.JFrame{
 
                 Font currentFont = movie.getFont();
                 Font changedFontSize = currentFont.deriveFont(10f);
-                ImageIcon filmImage = ImageProcessor.scaleImage(movie, filmName, imageWidth, imageHeight);
+                ImageIcon filmImage = ImageProcessor.getInstance().scaleImage(movie, filmImageName, imageWidth, imageHeight);
                 
                 movie.setIcon(filmImage);
                 movie.setText("<html><center>" + filmTitle + " (" + filmYear + ")</center></html>");
@@ -141,10 +140,7 @@ public class ListMovie extends javax.swing.JFrame{
                 gridBagConstraints.gridx++;
                 indexIterationMovie++;
             }
+
             return scrollPane;
-        } catch(SQLException e) {
-            System.out.println(e);
-            return new JScrollPane();
-        }
     }
 }

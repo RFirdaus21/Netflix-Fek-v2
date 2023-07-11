@@ -1,10 +1,22 @@
-
 package Helper;
 
 import java.io.File;
 
 public class ImageRemover {
-    public static boolean removeImage(String imageName){
+    private static ImageRemover instance;
+    
+    private ImageRemover() {
+        // Private constructor to prevent direct instantiation
+    }
+    
+    public static ImageRemover getInstance() {
+        if (instance == null) {
+            instance = new ImageRemover();
+        }
+        return instance;
+    }
+    
+    public boolean removeImage(String imageName) {
         String imagePath = "src/Images/" + imageName;
 
         File imageFile = new File(imagePath);

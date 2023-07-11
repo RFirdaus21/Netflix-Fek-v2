@@ -1,14 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Admin;
 
-import Database.Database;
-import Helper.ImageProcessor;
-import com.mysql.jdbc.ResultSetMetaData;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import API.FilmApiHandler;
+import Helper.ImageRemover;
+import Model.FilmRequestResponse;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -17,37 +12,26 @@ import javax.swing.table.DefaultTableModel;
  * @author rfirdaus
  */
 public class MovieManager extends javax.swing.JFrame {
-    private Object movieId;
+    private int movieId;
     /**
      * Creates new form MovieManager
      */
     public MovieManager() {
         initComponents();
-        this.initSelectedMovie();
         this.initTable();
         
     }
 
-    public Object getMovieId() {
+    public int getMovieId() {
         return movieId;
     }
 
-    public void setMovieId(Object movieId) {
+    public void setMovieId(int movieId) {
         this.movieId = movieId;
     }
     
-    
-    
-    private void initSelectedMovie(){
-        this.movieId = new Object();
-    }
-    
+   
     private void initTable() {
-        try{
-            String query = "SELECT * FROM netflix_film";
-            ResultSet resultSetMovie = Database.getInstance().resultQuery(query);
-
-            // Create a table model to hold the data
             DefaultTableModel tableModelMovies = new DefaultTableModel(){
                 @Override
                 public boolean isCellEditable(int row, int column) {
@@ -55,30 +39,26 @@ public class MovieManager extends javax.swing.JFrame {
                 }
             };
 
-            // Retrieve column metadata
-            ResultSetMetaData metaData = (ResultSetMetaData) resultSetMovie.getMetaData();
-            int columnCount = metaData.getColumnCount();
+            FilmApiHandler api = new FilmApiHandler();
+            List<FilmRequestResponse> users = api.getAll();
 
-            // Add column names to the table model
-            for (int i = 1; i <= columnCount; i++) {
-                String columnName = metaData.getColumnName(i);
-                tableModelMovies.addColumn(columnName);
-            }
+            String[] columnNames = { "id", "title", "year", "director", "genre", "cast", "synopsis", "image"};
+            tableModelMovies.setColumnIdentifiers(columnNames);
 
-            // Populate the table model with data
-            while (resultSetMovie.next()) {
-                Object[] rowData = new Object[columnCount];
-                for (int i = 1; i <= columnCount; i++) {
-                    rowData[i - 1] = resultSetMovie.getObject(i);
-                }
+            for (FilmRequestResponse film : users) {
+                Object[] rowData = new Object[columnNames.length];
+                rowData[0] = film.getId();
+                rowData[1] = film.getTitle();
+                rowData[2] = film.getYear();
+                rowData[3] = film.getDirector();
+                rowData[4] = film.getGenre();
+                rowData[5] = film.getCast();
+                rowData[6] = film.getSynopsis();
+                rowData[7] = film.getImage();
                 tableModelMovies.addRow(rowData);
             }
 
-            // Set the table model on the table
             tableMovies.setModel(tableModelMovies);
-        }catch(SQLException e){
-            System.out.println(e);
-        }
     }
      
      private void resetTableMovie(){
@@ -199,23 +179,21 @@ public class MovieManager extends javax.swing.JFrame {
         if (selectedRow != -1) {
             DefaultTableModel model = (DefaultTableModel) tableMovies.getModel();
             
-            this.setMovieId(model.getValueAt(selectedRow, 0));
+            this.setMovieId(Integer.parseInt(model.getValueAt(selectedRow, 0).toString()));
         }
     }//GEN-LAST:event_tableMoviesMouseClicked
 
     private void btn_movieRemoveMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_movieRemoveMouseClicked
-        String query = "SELECT image FROM netflix_film WHERE id="+this.getMovieId();
-        String ImageName = Database.getInstance().resultQuery(query, "image");
+        FilmApiHandler api = new FilmApiHandler();
+        FilmRequestResponse film = api.getById(this.getMovieId());
+        boolean success = api.delete(this.getMovieId());
         
-        query = "DELETE FROM netflix_film WHERE id="+this.getMovieId();
-        boolean successQuery = Database.getInstance().manipulationQuery(query);
-        
-        if(!successQuery){
+        if(!success){
             JOptionPane.showMessageDialog(null,"Failed Delete Movie");
             return;
         }
         
-        boolean succesRemoveImage = ImageProcessor.removeImage(ImageName);
+        boolean succesRemoveImage = ImageRemover.getInstance().removeImage(film.getImage());
         
         if(!succesRemoveImage){
             JOptionPane.showMessageDialog(null,"Failed Delete Movie");

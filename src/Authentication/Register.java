@@ -1,6 +1,6 @@
 package Authentication;
 
-import Database.Database;
+import API.RegisterApiHandler;
 import javax.swing.JOptionPane;
 
 public class Register extends javax.swing.JFrame {
@@ -127,7 +127,7 @@ public class Register extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regActionPerformed
-String username = txtUsername.getText().trim();
+        String username = txtUsername.getText();
         String password = txtPassword.getText();
         String reTypePassword = txtRePass.getText();
         
@@ -136,10 +136,10 @@ String username = txtUsername.getText().trim();
         } else if (password.equals("")||username.equals("")){
             JOptionPane.showMessageDialog(null,"Username or password cannot be empty");
         } else {
-            String query = "INSERT INTO netflix_user (username, password) VALUES ('"+username+"', '"+password+"')";
-            boolean successQuery = Database.getInstance().manipulationQuery(query);
+            RegisterApiHandler api = new RegisterApiHandler();
+            boolean success = api.register(username, password);
             
-            if(!successQuery){
+            if(!success){
                JOptionPane.showMessageDialog(null, "Create Account Failed");
                return;
             }

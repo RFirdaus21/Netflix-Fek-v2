@@ -1,9 +1,8 @@
 package Authentication;
 
-import Database.Database;
+import API.LoginApiHandler;
 import Content.ListMovie;
 import Admin.AdminPage;
-import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
@@ -142,14 +141,13 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_registActionPerformed
 
     private void btn_loginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_loginActionPerformed
-        // TODO add your handling code here:
-        try{
-            String query = "SELECT * FROM netflix_user WHERE username='" + txtUsername.getText() +"' AND password='"+ txtPassword.getText() + "'";
-            ResultSet resultSetUser = Database.getInstance().resultQuery(query);
+            String username = txtUsername.getText();
+            String password = txtPassword.getText();
+            LoginApiHandler api = new LoginApiHandler();
+            String success = api.login(username, password);
 
-            if(resultSetUser.next()){
-                String userRole = resultSetUser.getString("role");
-                if(userRole.equals("admin")){
+            if(!success.equals("")){
+                if(success.equals("admin")){
                     this.dispose();
                     new AdminPage().setVisible(true);
                     return;
@@ -161,9 +159,6 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,"Wrong Username or Password");
                 txtPassword.requestFocus();
             }
-        } catch(SQLException e){
-            System.out.println(e);
-        }
     }//GEN-LAST:event_btn_loginActionPerformed
 
     public static void main(String args[]) {

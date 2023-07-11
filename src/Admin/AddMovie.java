@@ -4,9 +4,9 @@
  */
 package Admin;
 
-import Authentication.Login;
-import Database.Database;
-import Helper.ImageProcessor;
+import API.FilmApiHandler;
+import Helper.ImageUploader;
+import Model.FilmRequestResponse;
 import java.io.File;
 import java.util.HashMap;
 import javax.swing.JFileChooser;
@@ -304,6 +304,9 @@ public class AddMovie extends javax.swing.JFrame {
 
     private void btn_saveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_saveActionPerformed
         HashMap<String, String> formData = getAllFormValues();
+        FilmApiHandler api = new FilmApiHandler();
+        FilmRequestResponse film = new FilmRequestResponse();
+        
         int id = Integer.parseInt(formData.get("id"));
         String title = formData.get("title");
         int year = Integer.parseInt(formData.get("year"));
@@ -313,10 +316,18 @@ public class AddMovie extends javax.swing.JFrame {
         String synopsis = formData.get("synopsis");
         String image = formData.get("image");
         
-        String query = "INSERT INTO netflix_film (id, title, year, director, genre, cast, synopsis, image) VALUES ('"+ id + "','"+ title + "', '" + year + "', '" + director + "', '" + genre + "', '" + cast + "', '" + synopsis + "', '" + image + "')";
-        boolean successQuery = Database.getInstance().manipulationQuery(query);
-            
-        if(!successQuery){
+        film.setId(id);
+        film.setTitle(title);
+        film.setYear(year);
+        film.setDirector(director);
+        film.setGenre(genre);
+        film.setCast(cast);
+        film.setSynopsis(synopsis);
+        film.setImage(image);
+        
+        boolean success = api.create(film);
+        
+        if(!success){
             JOptionPane.showMessageDialog(null, "Add Film Failed");
             return;
         }
@@ -330,7 +341,7 @@ public class AddMovie extends javax.swing.JFrame {
         int returnValue = fileChooser.showOpenDialog(this);
         if (returnValue == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
-            String uniqueImageName = ImageProcessor.uploadImage(selectedFile);
+            String uniqueImageName = ImageUploader.uploadImage(selectedFile);
             
             if(uniqueImageName.equals("")){
                 JOptionPane.showMessageDialog(null, "Faied Upload Image");
@@ -380,6 +391,12 @@ public class AddMovie extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(AddMovie.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
