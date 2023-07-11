@@ -35,40 +35,61 @@
 | 28                                    | Direksi Dapat Melihat Statistik Waktu Tonton Suatu FIlm           | Medium | Belum Terimplementasi |
 
 # No 2
+Class Diagram  
 
-![]()
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/ClassDiagram.jpeg)
 
 # No 3
-
-![]()
-![]()
-![]()
 Mampu menunjukkan dan menjelaskan penerapan setiap poin dari SOLID Design Principle
 
-# No 4
 
+Menerapkan Single Responsibility Principle (S dari SOLID) pada 3 class berikut, sebelumnya seluruh class dijadikan satu dan hanya ada class ImageProcessor. Tetapi karena terdapat beberapa method yang memiliki fungsi yang berbeda maka dipisah dan dijadikan class baru berdasarkan dengan tugasnya.    
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/SRP-Solid.png)  
+Contoh code ini adalah untuk meremove image ketika menghapus entry film, class ImageRemover hanya bertugas untuk meremove image dan tidak ada tugas lain sesuai kaidah SRP   
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/SRP-Solid-Example.png)
 ![]()
-Mampu menunjukkan dan menjelaskan Design Pattern yang dipilih
+
+
+# No 4
+Mampu menunjukkan dan menjelaskan Design Pattern yang dipilih  
+Deisgn Pattern yang diterapkan adalah Singleton yaitu dengan contoh code berikut   
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/Singleton.png)
+
 
 # No 5
+Mampu menunjukkan dan menjelaskan konektivitas ke database  
+Karena menggunakan webService maka konektivitas ke database melalui perantara web Service dengan. Berikut merupakan code untuk konektivitas antara web service dengan database  
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/connect-database.png)
+Dan ss database pada MySQL adalah berikut  
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/DB_connect.png)
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/DB_connect1.png)  
 
-![]()
-![]()
-![]()
-Mampu menunjukkan dan menjelaskan konektivitas ke database
+Kemudian untuk menghubungkan antara web service dengan UI atau aplikasi adalah dengan class class pada package ini
+
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/APICodeinUI.png)  
+dan karena file dari database berbentuk array maka diubah menjadi objek menggunakan class class berikut 
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/APICodeUI2.png)
 
 # No 6
 
 Mampu menunjukkan dan menjelaskan pembuatan web service dan setiap operasi CRUD nya
+Web Service yang dibuat menggunakan bahasa TypeScript, web service ini mengelola table akun dan film dari database dan menjadi penghubung database dan program aplikasi (UI). 
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/WebServiceSS.png)
+
+
 
 # No 7
 
 ![]()
-Mampu menunjukkan dan menjelaskan Graphical User Interface dari produk digital
+Mampu menunjukkan dan menjelaskan Graphical User Interface dari produk digital  
+Aplikasi yang dibuat menggunakan Java with Ant pada dengan JavaSwing sebagai UI nya. APlikasi perantaranya yaitu Apache Netbeans, UI sendiri memiliki format file .form karena menggunakan JForm pada JavaSwing dalam proses mendeasain UI. Contoh hasil GUI yang telah dibuat ada disini  
+
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/GUI_GIF.gif)
 
 # No 8
 
 Mampu menunjukkan dan menjelaskan HTTP connection melalui GUI produk digital
+
 
 # No 9
 
