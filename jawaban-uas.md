@@ -80,17 +80,25 @@ Web Service yang dibuat menggunakan bahasa TypeScript, web service ini mengelola
 
 # No 7
 
-![]()
 Mampu menunjukkan dan menjelaskan Graphical User Interface dari produk digital  
+
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/GUI_GIF.gif)  
 Aplikasi yang dibuat menggunakan Java with Ant pada dengan JavaSwing sebagai UI nya. APlikasi perantaranya yaitu Apache Netbeans, UI sendiri memiliki format file .form karena menggunakan JForm pada JavaSwing dalam proses mendeasain UI. Contoh hasil GUI yang telah dibuat ada disini  
 
-![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/GUI_GIF.gif)
+
 
 # No 8
 
 Mampu menunjukkan dan menjelaskan HTTP connection melalui GUI produk digital
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/http%20conecction.png)  
+
+HTTP connection yang digunakan yaitu untuk menyambungkan koneksi dari GUI atau aplikasi ke API Web service sebagai perantara database, HTTP connection ini terpisah tergantung untuk keperluannya. pada gambar diatas HTTP connection untuk mengambil data film dari database. Untuk HTTP connection lain yaitu ada pada class dalam gambar di bawah  
+![](https://github.com/RFirdaus21/Netflix-Fek-v2/blob/main/photo%20for%20md/APICodeinUI.png)  
+terdapat HTTP connection untuk menghandle login, user, register dan film. HTTP connection yang digynakan juga untuk localhost karena memang web service yang digunakan tersambung dengan server lokal saja.
 
 
 # No 9
 
 Mampu Mendemonstrsikan produk digitalnya kepada publik dengan cara-cara kreatif melalui video Youtube
+
+link demo : https://youtu.be/3liJDg88gKU
