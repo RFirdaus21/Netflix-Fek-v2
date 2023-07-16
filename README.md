@@ -7,3 +7,5 @@ How to run :
 
 code web service : 
 https://github.com/RFirdaus21/API-NetflixFek-v2
+
+link file Database : https://drive.google.com/file/d/1k9CFjk9yW2W-XiHYlquu75fUOQmeWpPi/view?usp=drive_link
